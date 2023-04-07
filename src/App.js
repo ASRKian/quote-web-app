@@ -9,6 +9,7 @@ function App() {
 
   const [quote, setQuote] = useState('');
   const [author, setAuthor] = useState('');
+  let initialised = false;
 
   function getQuote () {
     axios.get(`${url}`)
@@ -19,12 +20,10 @@ function App() {
     })
   }
 
-  // if (quote === '') {
-  //   getQuote();
-  //   console.log(getQuote());
-  // }
-
-  useEffect(() => getQuote(), []);
+  useEffect(() =>{
+    if (!initialised) {
+      initialised = true;
+      getQuote()}}, []);
   
   return (
     <div className='app-div'>
